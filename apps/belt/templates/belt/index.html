@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Belt Exam: Travel Buddies</title>
+  </head>
+  <body>
+    <a href="{%url 'belt:logout'%}">Log out</a>
+  <h2>Hello, {{user.fname}} {{user.lname}}</h2>
+
+  <h3>Your Trip Schedules</h3>
+  <table>
+    <tr>
+      <td><strong>Destination</strong></td>
+      <td><strong>Travel Start Date</strong></td>
+      <td><strong>Travel End Date</strong></td>
+      <td><strong>Plan</strong></td>
+    </tr>
+    {%for item in users_trips%}
+    <tr>
+      <td><a href="{%url 'belt:show' item.id%}">{{item.destination}}</a></td>
+      <td>{{item.startdate}}</td>
+      <td> {{item.startdate}}</td>
+      <td>{{item.plan}}</td>
+    </tr>
+    {%endfor%}
+    {%for item in joined_trip%}
+    <tr>
+      <td><a href="{%url 'belt:show' item.trips.id%}">{{item.trips.destination}}</a></td>
+      <td>{{item.trips.startdate}}</td>
+      <td>{{item.trips.enddate}}</td>
+      <td>{{item.trips.plan}}</td>
+
+    </tr>
+    {%endfor%}
+  </table>
+
+<h3>Other Trips:</h3>
+<table>
+  <tr>
+  <td><strong>Name</strong></td>
+  <td><strong>Destination</strong></td>
+  <td><strong>Travel Start Date</strong></td>
+  <td><strong>Travel End Date</strong></td>
+  <td><strong>Do you want to join this friend???</strong></td>
+  </tr>
+
+  {%for item in trips%}
+  <tr>
+  <td>{{item.traveler.fname}} {{item.traveler.lname}}</td>
+  <td><a href="{%url 'belt:show' item.id%}">{{item.destination}}</a></td>
+  <td>{{item.startdate}}</td>
+  <td>{{item.enddate}}</td>
+  <td><a href="{%url 'belt:join' item.id%}">Join</a></td>
+  </tr>
+  {%endfor%}
+</table>
+
+<h4><a href="{%url 'belt:add'%}">Add a Travel Plan!</a></h4>
+
+
+  </body>
+</html>
